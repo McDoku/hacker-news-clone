@@ -10,11 +10,14 @@
 #
 
 class Link < ActiveRecord::Base
+  belongs_to :user
+
   attr_accessible :title, :url
   before_validation :sanitize
 
   validates :title, :presence => true
   validates :url, :presence => true, :uniqueness => true
+  validates :user_id, :presence => true
 
   def sanitize
     self.url = "http://" + url if url !=~ /^http/
