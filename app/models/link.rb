@@ -19,7 +19,7 @@ class Link < ActiveRecord::Base
 
   def sanitize
     url = self.url.downcase
-    self.url = "http://" + url if url !=~ /^http/
+    self.url = "http://" + url if !url.match(/^http/)
   end
 
   def valid_edit?

@@ -19,4 +19,5 @@ end
 group :development do
   gem 'annotate', '>=2.5.0.pre2'
   gem 'quiet_assets'
+  gem 'pry-rails'
 end
