@@ -24,9 +24,10 @@ class LinksController < ApplicationController
   def update
     @link = Link.find(params[:id])
     if !@link.valid_edit?
-      flash[:error] = "You can only edit a submission within 15 minutes of its submission."
+      flash['error'] = "You can only edit a submission within 15 minutes of its submission."
       redirect_to root_path
     elsif @link.update_attributes(params[:link])
+      flash[:notice] = "You risked it all and gained everything.  Congratulations.  You've just updated your submission."
       redirect_to root_path
     else
       render :edit
