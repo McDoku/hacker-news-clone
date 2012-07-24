@@ -1,5 +1,5 @@
 - flash.each do |name, msg|
   -# BUG BUG something seems wrong with these alerts
-  %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+  %div{:class => "alert alert-#{name.to_s}" }
     %a.close{"data-dismiss" => "alert"} &#215;
     = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
