@@ -5,6 +5,8 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'bootstrap-sass'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,4 +18,5 @@ end
 
 group :development do
   gem 'annotate', '>=2.5.0.pre2'
+  gem 'quiet_assets'
 end

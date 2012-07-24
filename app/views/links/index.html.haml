@@ -1,0 +1,5 @@
+%ol
+  - @links.each do |link|
+    %li= link_to link.title, link.url
+
+= paginate @links, :theme => 'twitter-bootstrap'
