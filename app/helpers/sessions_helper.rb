@@ -16,7 +16,7 @@ module SessionsHelper
     end
   end
 
-  def authenticate
+  def authorize
     unless signed_in?
       flash[:error] = "Please sign in or create an account."
       redirect_to root_path

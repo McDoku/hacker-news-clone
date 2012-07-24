@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create]
+  before_filter :authorize, :only => [:new, :create]
 
   def index
     @links = Link.order(:url).page(params[:page])
