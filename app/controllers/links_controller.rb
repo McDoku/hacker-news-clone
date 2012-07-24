@@ -11,7 +11,7 @@ class LinksController < ApplicationController
     @link = Link.new(params[:link])
 
     if @link.save
-      redirect_to root_path
+      redirect_to links_path
     else
       render :new
     end
@@ -21,7 +21,7 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
     if !@link.valid_edit?
       flash['error'] = "You can only edit a submission within 15 minutes of its submission."
-      redirect_to root_path
+      redirect_to links_path
     end
   end
 
@@ -29,7 +29,7 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
     if @link.update_attributes(params[:link])
       flash[:notice] = "You risked it all and gained everything.  Congratulations.  You've just updated your submission."
-      redirect_to root_path
+      redirect_to links_path
     else
       render :edit
     end
