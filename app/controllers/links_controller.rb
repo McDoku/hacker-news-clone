@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authorize, :only => [:new, :create]
+  before_filter :authorize, :only => [:new, :create, :edit, :update]
 
   def index
     @links = Link.scoped.page(params[:page])
