@@ -11,9 +11,25 @@ class LinksController < ApplicationController
     @link = Link.new(params[:link])
 
     if @link.save
-      redirect_to links_path
+      redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def update
+    @link = Link.find(params[:id])
+    if !@link.valid_edit?
+      flash[:error] = "You can only edit a submission within 15 minutes of its submission."
+      redirect_to root_path
+    elsif @link.update_attributes(params[:link])
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 end

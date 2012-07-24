@@ -11,6 +11,7 @@
 
 class Link < ActiveRecord::Base
   attr_accessible :title, :url
+
   before_validation :sanitize
 
   validates :title, :presence => true
@@ -19,5 +20,9 @@ class Link < ActiveRecord::Base
   def sanitize
     url = self.url.downcase
     self.url = "http://" + url if url !=~ /^http/
+  end
+
+  def valid_edit?
+    true if (Time.now - created_at) < 900
   end
 end
