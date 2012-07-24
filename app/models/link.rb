@@ -17,6 +17,7 @@ class Link < ActiveRecord::Base
   validates :url, :presence => true, :uniqueness => true
 
   def sanitize
+    url = self.url.downcase
     self.url = "http://" + url if url !=~ /^http/
   end
 end
