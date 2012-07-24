@@ -13,13 +13,20 @@ class Link < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible :title, :url
+
   before_validation :sanitize
 
   validates :title, :presence => true
   validates :url, :presence => true, :uniqueness => true
   validates :user_id, :presence => true
 
+  private
   def sanitize
-    self.url = "http://" + url if url !=~ /^http/
+    url = self.url.downcase
+    self.url = "http://" + url if !url.match(/^http/)
+  end
+
+  def valid_edit?
+    true if (Time.now - created_at) < 900
   end
 end
