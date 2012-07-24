@@ -20,13 +20,13 @@ class Link < ActiveRecord::Base
   validates :url, :presence => true, :uniqueness => true
   validates :user_id, :presence => true
 
+  def valid_edit?
+    true if (Time.now - created_at) < 900
+  end
+
   private
   def sanitize
     url = self.url.downcase
     self.url = "http://" + url if !url.match(/^http/)
-  end
-
-  def valid_edit?
-    true if (Time.now - created_at) < 900
   end
 end
