@@ -9,8 +9,11 @@
 #  updated_at :datetime         not null
 #
 
+GRAVITY = 1.8
+
 class Link < ActiveRecord::Base
   belongs_to :user
+  has_many :votes
 
   attr_accessible :title, :url
 
@@ -24,9 +27,21 @@ class Link < ActiveRecord::Base
     true if (Time.now - created_at) < 900
   end
 
+  def score
+     vote_count / ( hours_past + 2) ** GRAVITY
+  end
+
   private
   def sanitize
     url = self.url.downcase
     self.url = "http://" + url if !url.match(/^http/)
+  end
+
+  def vote_count
+    self.votes.count
+  end
+
+  def hours_past
+    (Time.now - self.created_at)/3600
   end
 end

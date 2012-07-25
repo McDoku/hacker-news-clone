@@ -1,5 +1,9 @@
 %ol
   - @links.each do |link|
-    %li= link_to link.title, link.url
+    %li
+      = link_to link.title, link.url
+      - if signed_in? && valid_vote?(link)
+        = link_to "Upvote", votes_url(:link => link),
+                          :method => :post, :class => "upvote"
 
 = paginate @links, :theme => 'twitter-bootstrap'
