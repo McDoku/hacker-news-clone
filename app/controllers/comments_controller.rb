@@ -3,13 +3,12 @@ class CommentsController < ApplicationController
   before_filter :link
 
   def new
-    @comment = current_user.comments.new(:link_id => link.id)
+    @comment = Comment.new
   end
 
   def create
-    params[:comment][:link_id] = @link.id
-
     @comment = current_user.comments.new(params[:comment])
+    @comment.link = @link
 
     if @comment.save
       flash[:success] = "Thank you for your comment."
