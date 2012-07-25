@@ -1,5 +1,8 @@
 %ol
   - @links.each do |link|
-    %li= link_to link.title, link.url
+    %li
+      = link_to link.title, link.url
+      %br
+      = link_to "Comments", link_comments_path(link)
 
 = paginate @links, :theme => 'twitter-bootstrap'
