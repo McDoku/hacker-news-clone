@@ -22,4 +22,4 @@ group :development do
   gem 'quiet_assets'
 end
 
-gem 'pry-rails', :group => [:development, :test]
+gem 'jazz_hands', :group => [:development, :test]
