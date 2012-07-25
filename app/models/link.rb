@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 
+GRAVITY = 1.8
+
 class Link < ActiveRecord::Base
   belongs_to :user
   has_many :votes
@@ -26,7 +28,7 @@ class Link < ActiveRecord::Base
   end
 
   def score
-    ( vote_count - 1 ) / ( hours_past + 2) ** 1.8
+     vote_count / ( hours_past + 2) ** GRAVITY
   end
 
   private

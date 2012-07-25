@@ -2,8 +2,8 @@ class LinksController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update]
 
   def index
-    @links = Link.all.sort_by(&:score).reverse
-    @links = Kaminari.paginate_array(@links).page(params[:page])
+    sorted_links = Link.all.sort_by(&:score).reverse
+    @links = Kaminari.paginate_array(sorted_links).page(params[:page])
   end
 
   def new
