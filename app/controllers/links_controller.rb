@@ -4,7 +4,6 @@ class LinksController < ApplicationController
   def index
     @links = Link.all.sort_by(&:score).reverse
     @links = Kaminari.paginate_array(@links).page(params[:page])
-    binding.pry
   end
 
   def new
