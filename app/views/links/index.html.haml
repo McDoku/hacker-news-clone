@@ -2,13 +2,10 @@
   - @links.each do |link|
     %li
       = link_to link.title, link.url
-<<<<<<< HEAD
       %br
       = link_to "Comments", link_comments_path(link)
-=======
       - if signed_in? && valid_vote?(link)
         = link_to "Upvote", votes_url(:link => link),
                           :method => :post, :class => "upvote"
->>>>>>> master
 
 = paginate @links, :theme => 'twitter-bootstrap'
