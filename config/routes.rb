@@ -4,5 +4,6 @@ Hackerjews::Application.routes.draw do
   end
   resources :users, :only => [:new, :create]
   resources :sessions, :only => [:new, :create]
+  resources :votes, :only => :create
   root :to => 'links#index'
 end
