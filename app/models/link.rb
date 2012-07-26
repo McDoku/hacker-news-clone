@@ -15,7 +15,7 @@ GRAVITY = 1.8
 class Link < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :as => :commentable
-  has_many :votes
+  has_many :votes, :as => :votable
 
   attr_accessible :title, :url
 
@@ -46,4 +46,5 @@ class Link < ActiveRecord::Base
   def hours_past
     (Time.now - self.created_at)/3600
   end
+
 end

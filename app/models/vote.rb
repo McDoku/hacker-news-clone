@@ -10,10 +10,15 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_accessible :link_id
+  attr_accessible :votable
 
   belongs_to :user
   belongs_to :link
+  belongs_to :votable, :polymorphic => true
 
-  validates_uniqueness_of :user_id, :scope => :link_id
+  validates_uniqueness_of :user_id, :scope => [:votable_id, :votable_type]
+
+  validates :user,         :presence => true
+  validates :votable,      :presence => true
+  validates :votable_type, :presence => true
 end
