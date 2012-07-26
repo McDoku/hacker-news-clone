@@ -1,9 +1,13 @@
 class VotesController < ApplicationController
   def create
-    @user = current_user
-    @link = Link.find(params[:link_id])
-    @vote = @user.votes.create(:link_id => @link.id)
+    if params[:link_id]
+      votable = Link.find(params[:link_id])
+    else
+      votable = Comment.find(params[:comment_id])
+    end
 
-    redirect_to links_url
+    current_user.votes.create(:votable => votable)
+    flash[:success] = "Thanks for voting."
+    redirect_to :back
   end
 end
