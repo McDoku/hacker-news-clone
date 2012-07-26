@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725224323) do
+ActiveRecord::Schema.define(:version => 20120726061104) do
 
   create_table "comments", :force => true do |t|
-    t.string   "content",     :null => false
-    t.integer  "user_id",     :null => false
-    t.integer  "parent_id",   :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "parent_type"
+    t.string   "content",          :null => false
+    t.integer  "user_id",          :null => false
+    t.integer  "commentable_id",   :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "commentable_type"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "links", :force => true do |t|
     t.string   "url",        :null => false

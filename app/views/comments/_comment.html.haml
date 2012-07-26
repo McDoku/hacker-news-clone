@@ -1,0 +1,6 @@
+%li
+  %h2= comment.user.handle
+  = comment.content
+  = link_to "Reply", new_comment_comment_path(comment)
+
+  %ul= render comment.comments
