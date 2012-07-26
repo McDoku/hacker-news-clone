@@ -12,7 +12,11 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = "Thank you for your comment."
-      redirect_to link_path(find_link(@commentable))
+      if @commentable.is_a? Link 
+        redirect_to link_path(@commentable)
+      else 
+        redirect_to link_path(find_link(@commentable))
+      end
     else
       render :new
     end
@@ -26,7 +30,7 @@ class CommentsController < ApplicationController
 
   def find_link(commentable)
     if commentable.commentable_type == "Link"
-      commentable
+      commentable.commentable
     else
       find_link(commentable.commentable)
     end
