@@ -1,9 +1,11 @@
 class VotesController < ApplicationController
   def create
-    @user = current_user
     @link = Link.find(params[:link_id])
-    @vote = @user.votes.create(:link_id => @link.id)
 
-    redirect_to links_url
+    @vote = current_user.votes.new(:value => params[:value])
+    @vote.link_id = @link.id
+    @vote.save!
+
+    redirect_to :back
   end
 end

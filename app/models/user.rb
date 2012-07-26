@@ -25,8 +25,11 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :length => {minimum: 6}
   validates :password_confirmation, :presence => :true
 
-  private
+  def karma
+    User.joins(:links => :votes).where('id' => user.id).count
+  end
 
+  private
   def sanitize
     self.email = email.downcase
   end
