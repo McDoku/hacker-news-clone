@@ -5,7 +5,5 @@
       %br
       = link_to "Comments", link_path(link)
       - if signed_in? && valid_vote?(link)
-                  polymorphic_path([link, @vote]),
-                  :method => :post,
-                  :class => "upvote"
+        = render :partial => 'shared/vote', :locals => {:votable => link}
 = paginate @links, :theme => 'twitter-bootstrap'

@@ -5,6 +5,7 @@ class LinksController < ApplicationController
   def show
     @comment = Comment.new
     @commentable = @link
+    @vote = Vote.new
   end
 
   def index
