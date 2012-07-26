@@ -1,7 +1,0 @@
-%h1= link_to @link.title, @link.url
-
-%ul
-- @comments.each do |comment|
-  %li= "#{comment.user.handle}: #{comment.content}"
-
-= link_to "New comment", new_link_comment_path if signed_in?

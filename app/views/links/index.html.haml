@@ -5,7 +5,7 @@
       %br
       = link_to "Comments", link_path(link)
       - if signed_in? && valid_vote?(link)
-        = link_to "Upvote", votes_url(:link_id => link),
-                          :method => :post, :class => "upvote"
-
+                  polymorphic_path([link, @vote]),
+                  :method => :post,
+                  :class => "upvote"
 = paginate @links, :theme => 'twitter-bootstrap'
