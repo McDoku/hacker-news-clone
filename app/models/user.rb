@@ -26,16 +26,16 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => :true
 
   def karma
-    comment_karma.to_i + link_karma.to_i
+    comment_karma + link_karma
   end
 
   private
   def comment_karma
-    User.joins(:comments => :votes).where('id' => self.id).sum('votes.direction')
+    User.joins(:comments => :votes).where('id' => self.id).sum('votes.direction').to_i
   end
 
   def link_karma
-    User.joins(:links => :votes).where('id' => self.id).sum('votes.direction')
+    User.joins(:links => :votes).where('id' => self.id).sum('votes.direction').to_i
   end
 
   def sanitize
