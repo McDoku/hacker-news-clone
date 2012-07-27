@@ -1,4 +1,6 @@
 = link_to "Upvote",
-          polymorphic_path([votable, @vote]),
-          :method => :post,
-          :class => "upvote"
+          polymorphic_path([votable, @vote], :direction => "1"),
+          :method => :post
+= link_to "Downvote",
+          polymorphic_path([votable, @vote], :direction => "-1"),
+          :method => :post
