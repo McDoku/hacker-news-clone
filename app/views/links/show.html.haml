@@ -2,6 +2,6 @@
 
 = form_for [@commentable, @comment] do |f|
   = f.text_area :content
-  = f.submit "Add Comment"
+  = f.submit "Add comment"
 
 %ul= render @commentable.comments

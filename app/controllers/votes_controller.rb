@@ -6,7 +6,7 @@ class VotesController < ApplicationController
       votable = Comment.find(params[:comment_id])
     end
 
-    current_user.votes.create(:votable => votable)
+    current_user.votes.create(:votable => votable, :direction => params[:direction])
     flash[:success] = "Thanks for voting."
     redirect_to :back
   end
