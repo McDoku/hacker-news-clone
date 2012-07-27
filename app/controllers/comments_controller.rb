@@ -1,30 +1,38 @@
 class CommentsController < ApplicationController
   before_filter :authorize, :only => [:new, :create]
-  before_filter :link
+  before_filter :load_commentable
 
   def new
     @comment = Comment.new
   end
 
   def create
-    @comment = current_user.comments.new(params[:comment])
-    @comment.link = @link
+    @comment = @commentable.comments.new(params[:comment])
+    @comment.user_id = current_user.id
 
     if @comment.save
       flash[:success] = "Thank you for your comment."
-      redirect_to link_comments_path
+      if @commentable.is_a? Link
+        redirect_to link_path(@commentable)
+      else
+        redirect_to link_path(find_link(@commentable))
+      end
     else
       render :new
     end
   end
 
-  def index
-    @comments = Comment.find_all_by_link_id(params[:link_id])
+  private
+  def load_commentable
+    resource, id = request.path.split('/')[1,2]
+    @commentable = resource.singularize.classify.constantize.find(id)
   end
 
-  private
-
-  def link
-    @link = Link.find(params[:link_id])
+  def find_link(commentable)
+    if commentable.commentable_type == "Link"
+      commentable.commentable
+    else
+      find_link(commentable.commentable)
+    end
   end
 end

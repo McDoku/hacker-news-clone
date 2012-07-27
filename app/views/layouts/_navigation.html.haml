@@ -2,6 +2,7 @@
 - if signed_in?
   %ul.nav
     %li.nav= link_to "Submit", new_link_path
+    %li.nav#karma= current_user.karma
 - else
   %ul.nav.pull-right
     %li.nav= link_to "Sign in", new_session_path

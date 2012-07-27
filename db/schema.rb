@@ -11,15 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724212134) do
+ActiveRecord::Schema.define(:version => 20120726225140) do
 
   create_table "comments", :force => true do |t|
-    t.string   "content",    :null => false
-    t.integer  "user_id",    :null => false
-    t.integer  "link_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "content",          :null => false
+    t.integer  "user_id",          :null => false
+    t.integer  "commentable_id",   :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "commentable_type"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "links", :force => true do |t|
     t.string   "url",        :null => false
@@ -43,10 +46,12 @@ ActiveRecord::Schema.define(:version => 20120724212134) do
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
 
   create_table "votes", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "link_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",      :null => false
+    t.integer  "votable_id",   :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "votable_type", :null => false
+    t.integer  "direction"
   end
 
 end

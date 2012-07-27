@@ -1,9 +1,17 @@
 class LinksController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update]
+  before_filter :find_link, :only => [:show, :edit, :update]
+
+  def show
+    @comment = Comment.new
+    @commentable = @link
+    @vote = Vote.new
+  end
 
   def index
     sorted_links = Link.all.sort_by(&:score).reverse
     @links = Kaminari.paginate_array(sorted_links).page(params[:page])
+    @vote = Vote.new
   end
 
   def new
@@ -22,7 +30,6 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find(params[:id])
     if !@link.valid_edit?
       flash[:error] = "You can only edit a submission within 15 minutes of its submission."
       redirect_to links_path
@@ -30,12 +37,16 @@ class LinksController < ApplicationController
   end
 
   def update
-    @link = Link.find(params[:id])
     if @link.update_attributes(params[:link])
       flash[:success] = "You risked it all and gained everything.  Congratulations.  You've just updated your submission."
       redirect_to links_path
     else
       render :edit
     end
+  end
+
+  private
+  def find_link
+    @link = Link.find(params[:id])
   end
 end

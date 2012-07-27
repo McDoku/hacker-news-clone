@@ -1,0 +1,7 @@
+%h1= link_to @commentable.title, @commentable.url
+
+= form_for [@commentable, @comment] do |f|
+  = f.text_area :content
+  = f.submit "Add comment"
+
+%ul= render @commentable.comments

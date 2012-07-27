@@ -5,7 +5,5 @@
       %br
       = link_to "Comments", link_comments_path(link)
       - if signed_in? && valid_vote?(link)
-        = link_to "Upvote", votes_url(:link => link),
-                          :method => :post, :class => "upvote"
-
+        = render :partial => 'shared/vote', :locals => {:votable => link}
 = paginate @links, :theme => 'twitter-bootstrap'
