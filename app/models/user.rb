@@ -26,10 +26,18 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => :true
 
   def karma
-    User.joins(:links => :votes).where('id' => user.id).count
+    comment_karma.to_i + link_karma.to_i
   end
 
   private
+  def comment_karma
+    User.joins(:comments => :votes).where('id' => self.id).sum('votes.direction')
+  end
+
+  def link_karma
+    User.joins(:links => :votes).where('id' => self.id).sum('votes.direction')
+  end
+
   def sanitize
     self.email = email.downcase
   end
