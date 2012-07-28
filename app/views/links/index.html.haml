@@ -1,8 +1,8 @@
 %ul.unstyled
   - @links.each do |link|
     %li
-      - if signed_in? && valid_vote?(link)
-        = render :partial => 'shared/vote', :locals => {:votable => link}
       = link_to link.title, link.url
       = link_to "Comments", link_path(link)
+      - if signed_in? && valid_vote?(link)
+        = render :partial => 'shared/vote', :locals => {:votable => link}
 = paginate @links, :theme => 'twitter-bootstrap'
