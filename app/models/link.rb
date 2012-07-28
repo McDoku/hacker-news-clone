@@ -24,6 +24,8 @@ class Link < ActiveRecord::Base
   validates :title, :presence => true
   validates :url, :presence => true, :uniqueness => true
   validates :user_id, :presence => true
+  
+  #fixme add validation for valid_edit?
 
   def valid_edit?
     true if (Time.now - created_at) < 900
