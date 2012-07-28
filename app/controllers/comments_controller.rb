@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
   end
 
   private
+  
   def load_commentable
     if params[:comment_id]
       @commentable = Comment.find(params[:comment_id])

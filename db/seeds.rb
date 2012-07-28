@@ -5,5 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-50.times { Link.create url: SecureRandom.urlsafe_base64(8).to_s + ".com", title: SecureRandom.base64(8) }

@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   end
 
   private
+  
   def comment_karma
     User.joins(:comments => :votes).where('id' => self.id).sum('votes.direction').to_i
   end

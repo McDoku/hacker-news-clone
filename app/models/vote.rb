@@ -17,7 +17,7 @@ class Vote < ActiveRecord::Base
   belongs_to :votable, :polymorphic => true
 
   validates_uniqueness_of :user_id, :scope => [:votable_id, :votable_type]
-  # validates_numericality_of :direction, :if => Proc.new {|v| v.direction.abs == 1}
+  #fixme validates_numericality_of :direction, :if => Proc.new {|v| v.direction.abs == 1}
 
   validates :user,         :presence => true
   validates :direction,    :presence => true

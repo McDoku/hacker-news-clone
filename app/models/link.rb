@@ -34,6 +34,7 @@ class Link < ActiveRecord::Base
   end
 
   private
+  
   def sanitize
     url = self.url.downcase
     self.url = "http://" + url if !url.match(/^http/)

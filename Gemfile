@@ -10,8 +10,6 @@ gem 'bootstrap-kaminari-views'
 gem 'bcrypt-ruby'
 gem 'thin'
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -21,6 +19,5 @@ end
 group :development do
   gem 'annotate', '>=2.5.0.pre2'
   gem 'quiet_assets'
+  gem 'jazz_hands'
 end
-
-gem 'jazz_hands', :group => [:development, :test]
