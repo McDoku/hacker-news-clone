@@ -11,6 +11,8 @@
 #  commentable_type :string(255)
 #
 
+#fixme make commentable_type not null
+
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, :polymorphic => true

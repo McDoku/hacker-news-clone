@@ -9,17 +9,13 @@ module SessionsHelper
   end
 
   def signed_in?
-    if session[:user_id]
-      true
-    else
-      false
-    end
+    session[:user_id] ? true : false
   end
 
   def authorize
     unless signed_in?
       flash[:error] = "Please sign in or create an account."
-      redirect_to root_path
+      redirect_to :back
     end
   end
 end

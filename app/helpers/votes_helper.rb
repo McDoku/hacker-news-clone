@@ -5,6 +5,7 @@ module VotesHelper
   end
 
   private
+  
   def voted?
     Vote.where(:user_id => current_user, :votable_id => @votable, :votable_type => @votable.class).any?
   end

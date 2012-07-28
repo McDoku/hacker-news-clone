@@ -1,3 +1,3 @@
-%h1= link_to @commentable.title, @commentable.url
-= render :partial => 'comments/form', :locals => {:commentable => @commentable}
-%ul= render :partial => @commentable.comments, :locals => {:commentable => @commentable}
+%h1= link_to @link.title, @link.url
+= render :partial => 'comments/form', :locals => {:commentable => @link} if signed_in?
+%ul= render :partial => @link.comments, :locals => {:commentable => @link}

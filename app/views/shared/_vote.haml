@@ -1,8 +1,5 @@
-= link_to "",
-          polymorphic_path([votable, @vote], :direction => "1"),
-          :method => :post,
-          :class => "icon-chevron-up"
-= link_to "",
-          polymorphic_path([votable, @vote], :direction => "-1"),
-          :method => :post,
-          :class => "icon-chevron-down"
+- {"up" => 1, "down" => -1}.each do |direction, value|
+  = link_to "",
+            polymorphic_path([votable, @vote], :direction => value),
+            :method => :post,
+            :class => "icon-chevron-#{direction}"

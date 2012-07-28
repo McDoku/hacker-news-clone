@@ -11,6 +11,7 @@
 #
 
 GRAVITY = 1.8
+TIME_TO_EDIT = 900
 
 class Link < ActiveRecord::Base
   belongs_to :user
@@ -28,7 +29,7 @@ class Link < ActiveRecord::Base
   #fixme add validation for valid_edit?
 
   def valid_edit?
-    true if (Time.now - created_at) < 900
+    true if (Time.now - created_at) < TIME_TO_EDIT
   end
 
   def score
@@ -49,5 +50,4 @@ class Link < ActiveRecord::Base
   def hours_past
     (Time.now - self.created_at)/3600
   end
-
 end

@@ -1,7 +1,8 @@
 %li
   %h2= comment.user.handle
   = comment.content
-  = link_to "Reply", new_comment_comment_path(comment)
-  - if signed_in? && valid_vote?(comment)
-    = render :partial => 'shared/vote', :locals => {:votable => comment}
+  - if signed_in?
+    = link_to "Reply", new_comment_comment_path(comment)
+    - if valid_vote?(comment)
+      = render :partial => 'shared/vote', :locals => {:votable => comment}
   %ul= render comment.comments
