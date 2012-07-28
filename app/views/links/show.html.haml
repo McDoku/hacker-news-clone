@@ -1,7 +1,5 @@
 %h1= link_to @commentable.title, @commentable.url
 
-= form_for [@commentable, @comment] do |f|
-  = f.text_area :content
-  = f.submit "Add comment"
+= render :partial => 'comments/form', :locals => {:commentable => @commentable}
 
-%ul= render @commentable.comments
+%ul= render :partial => @commentable.comments, :locals => {:commentable => @commentable}
