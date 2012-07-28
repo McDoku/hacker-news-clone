@@ -1,6 +1,8 @@
-= link_to "Upvote",
+= link_to "",
           polymorphic_path([votable, @vote], :direction => "1"),
-          :method => :post
-= link_to "Downvote",
+          :method => :post,
+          :class => "icon-chevron-up"
+= link_to "",
           polymorphic_path([votable, @vote], :direction => "-1"),
-          :method => :post
+          :method => :post,
+          :class => "icon-chevron-down"
